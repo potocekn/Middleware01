@@ -27,11 +27,15 @@ public class Server {
                     	BufferedReader reader = new BufferedReader(new InputStreamReader(input));
                     ) {           
                             String data = reader.readLine();
-	                        if (data == null) break;
+                            String timeString = "";
+                            
+	                        if (data != null)
+	                        {
+	                        	LocalDateTime time = LocalDateTime.now(); 
+		                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Shared.stringFormat);
+		                        timeString = time.format(formatter);
+	                        }	                        
 	                        
-	                        /**/LocalDateTime time = LocalDateTime.now(); 
-	                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Shared.stringFormat);
-	                        String timeString = time.format(formatter);
 	                        output.write (timeString.getBytes());/**/                           
                     }
                     System.out.println ("Client disconnected.");
