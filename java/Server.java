@@ -25,18 +25,18 @@ public class Server {
                         InputStream input = client_socket.getInputStream ();
                         OutputStream output = client_socket.getOutputStream ();
                     	BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-                    ) {           
-                            String data = reader.readLine();
+                    ) {         
+                            int data = reader.read();
                             String timeString = "";
-                            
-	                        if (data != null)
+                                                       
+	                        if (data != -1)
 	                        {
 	                        	LocalDateTime time = LocalDateTime.now(); 
 		                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Shared.stringFormat);
 		                        timeString = time.format(formatter);
 	                        }	                        
 	                        
-	                        output.write (timeString.getBytes());/**/                           
+	                        output.write (timeString.getBytes());
                     }
                     System.out.println ("Client disconnected.");
                 }
