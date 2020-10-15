@@ -22,12 +22,12 @@ with socket.socket (socket.AF_INET, socket.SOCK_STREAM) as server_socket:
 
 
             data = client_socket.recv (SOCKET_BUFFER_SIZE)
-            if len (data) != 0:
-                now = datetime.now()
-                date_time = now.strftime("%Y-%m-%d %H:%M:%S%Z")
-                client_socket.send("Holla")
-                client_socket.send (date_time)
-                client_socket.send("bannana")
+            if len (data) == 0:
+                break
+
+            now = datetime.now()
+            date_time = now.strftime("%Y-%m-%d %H:%M:%S")
+            client_socket.send(bytearray(date_time, 'utf-8'))
 
             print ('Client disconnected.')
 
