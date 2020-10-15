@@ -26,8 +26,8 @@ with socket.socket (socket.AF_INET, socket.SOCK_STREAM) as server_socket:
                 break
 
             now = datetime.now()
-            date_time = now.strftime("%Y-%m-%d %H:%M:%S")
-            client_socket.send(bytearray(date_time, 'utf-8'))
+            date_time = now.strftime(DATE_TIME_FORMAT)
+            client_socket.send(bytearray(date_time, ENCODING))
 
             print ('Client disconnected.')
 
